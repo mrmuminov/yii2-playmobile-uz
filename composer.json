@@ -13,6 +13,7 @@
     "require": {
         "yiisoft/yii2": "~2.0.0"
     },
+    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
             "mrmuminov\\yii2playmobileuz\\": ""
