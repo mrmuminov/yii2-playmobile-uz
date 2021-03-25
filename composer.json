@@ -1,0 +1,21 @@
+{
+    "name": "mrmuminov/yii2-playmobile-uz",
+    "description": "Yii2 PlaymobileUz SMS-shlyuz ",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","sms","shlyuz","send","play","mobile","uz","playmobile","playmobileuz","mrmuminov"],
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Bahriddin Mo'minov",
+            "email": "darkshadeuz@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "mrmuminov\\yii2playmobileuz\\": ""
+        }
+    }
+}
