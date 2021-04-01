@@ -10,6 +10,31 @@ use yii\httpclient\Request;
 
 /**
  * This is just an example.
+ *
+ *
+ *
+ * use mrmuminov\yii2playmobileuz\Playmobile;
+ *
+ * $playmobile = new Playmobile('username', 'password');
+ *
+ * $playmobile->create([
+ *      'baseUrl' => "http://91.204.239.44/broker-api/"
+ * ]);
+ *
+ * $response = $playmobile->send([
+ *  [
+ *      'recipient' => "998936913932",
+ *      'message-id' => "1",
+ *      'originator' => "3700",
+ *      'text' => "test",
+ *  ],[
+ *      'recipient' => "998936913932",
+ *      'message-id' => "1",
+ *      'originator' => "3700",
+ *      'text' => "test",
+ *  ],
+ * ]);
+ * echo $response == false ? "Not sent" : "Send successfully";
  */
 class Playmobile extends Component
 {
