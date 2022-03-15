@@ -18,7 +18,7 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "mrmuminov\\yii2playmobileuz\\": ""
+            "mrmuminov\\yii2playmobileuz\\src\\": ""
         }
     }
 }
