@@ -12,13 +12,15 @@
     ],
     "require": {
         "yiisoft/yii2": "~2.0.0",
+        "yiisoft/yii2-httpclient": "~2.0.0",
         "php": "7.*",
-        "ext-curl": "*"
+        "ext-curl": "*",
+      "ext-json": "*"
     },
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "mrmuminov\\yii2playmobileuz\\src\\": ""
+            "mrmuminov\\yii2playmobileuz\\": "src/"
         }
     }
 }
