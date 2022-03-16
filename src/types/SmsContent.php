@@ -3,13 +3,13 @@
 namespace mrmuminov\yii2playmobileuz\types;
 
 /**
- * Class Content
+ * Class SmsContent
  *
  * @package mrmuminov\yii2playmobileuz\types
  * @author MrMuminov <
  * @since 2.0.0
  */
-class Content extends BaseType implements TypeInterface
+class SmsContent extends BaseType implements TypeInterface
 {
 
     /**
@@ -17,26 +17,14 @@ class Content extends BaseType implements TypeInterface
      */
     public string $text;
 
-    /**
-     * @var string
-     */
-    public string $menu;
-
-    /**
-     * @var string
-     */
-    public string $file;
-
 
     /**
      * @return self
      */
     public function serialize(): self
     {
-        $this->serialized = ([
+        $this->serialized = json_encode([
             'text' => $this->text,
-            'menu' => $this->menu,
-            'file' => $this->file,
         ]);
         return $this;
     }
@@ -49,12 +37,6 @@ class Content extends BaseType implements TypeInterface
     {
         if (isset($data['text'])) {
             $this->text = $data['text'];
-        }
-        if (isset($data['menu'])) {
-            $this->menu = $data['menu'];
-        }
-        if (isset($data['file'])) {
-            $this->file = $data['file'];
         }
         return $this;
     }

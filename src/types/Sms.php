@@ -18,14 +18,14 @@ class Sms extends BaseType implements TypeInterface
     public string $originator;
 
     /**
-     * @var string
+     * @var int
      */
-    public string $ttl;
+    public int $ttl;
 
     /**
-     * @var Content
+     * @var SmsContent
      */
-    public Content $content;
+    public SmsContent $content;
 
 
     /**
@@ -33,7 +33,7 @@ class Sms extends BaseType implements TypeInterface
      */
     public function serialize(): self
     {
-        $this->serialized = ([
+        $this->serialized = json_encode([
             'originator' => $this->originator,
             'ttl' => $this->ttl,
             'content' => $this->content,

@@ -14,33 +14,49 @@ class Timing extends BaseType implements TypeInterface
 
     /**
      * @var string
+     * Отправлять по местному времени
+     *  0 - получателя
+     *  1 - системы
      */
     public string $localtime;
 
     /**
      * @var string
+     * Дата начала отправки.
+     * Формат YYYY-MM-DD hh:mm.
+     * Если не указана, то сообщения отправляются сразу же.
      */
     public string $startDatetime;
 
     /**
      * @var string
+     * Дата завершения отправки.
+     * Формат YYYY-MMDD hh:mm.
+     * Если не указана, то система не стремится отправиться все сообщения до определенного времени.
      */
     public string $endDatetime;
 
     /**
      * @var string
+     * Время, с которого разрешена отправка.
+     * Формат hh:mm
      */
     public string $allowedStarttime;
 
     /**
      * @var string
+     * Время, до которого разрешена отправка.
+     * Формат hh:mm
      */
     public string $allowedEndtime;
 
     /**
-     * @var string
+     * @var int
+     * Равномерно распределять отправку
+     *  1 - распределять
+     *  0 - не распределять
      */
-    public string $sendEvenly;
+    public int $sendEvenly;
 
 
     /**
@@ -48,7 +64,7 @@ class Timing extends BaseType implements TypeInterface
      */
     public function serialize(): self
     {
-        $this->serialized = ([
+        $this->serialized = json_encode([
             'localtime' => $this->localtime,
             'start-datetime' => $this->startDatetime,
             'end-datetime' => $this->endDatetime,

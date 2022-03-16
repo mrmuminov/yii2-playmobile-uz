@@ -18,24 +18,26 @@ class Call extends BaseType implements TypeInterface
     public string $originator;
 
     /**
-     * @var string
+     * @var int
      */
-    public string $ttl;
+    public int $ttl;
 
     /**
-     * @var Content
+     * @var CallContent
      */
-    public Content $content;
+    public CallContent $content;
 
     /**
-     * @var string
+     * @var int
+     * Количество попыток повторного звонка. Допустимы только неотрицательные числа.
      */
-    public string $retryAttempts;
+    public int $retryAttempts;
 
     /**
-     * @var string
+     * @var int
+     * Интервал, через который будет произведен повторный звонок, в миллисекундах
      */
-    public string $retryTimeout;
+    public int $retryTimeout;
 
 
     /**
@@ -43,7 +45,7 @@ class Call extends BaseType implements TypeInterface
      */
     public function serialize(): self
     {
-        $this->serialized = ([
+        $this->serialized = json_encode([
             'originator' => $this->originator,
             'ttl' => $this->ttl,
             'content' => $this->content,
