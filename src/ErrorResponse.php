@@ -2,24 +2,29 @@
 
 namespace mrmuminov\yii2playmobileuz;
 
+use yii\base\Component;
+
 /**
  * Class ErrorResponse
  *
  * @package mrmuminov\yii2playmobileuz
  * @author MrMuminov <
  * @since 2.0.0
+ *
+ * @property string $errorMessage
+ * @property string $errorCode
  */
-class ErrorResponse
+class ErrorResponse extends Component
 {
     /**
      * @var string
      */
-    protected $error_code;
+    public string $error_code;
 
     /**
      * @var string
      */
-    protected $error_message;
+    public string $error_message;
 
     /**
      * @return string
