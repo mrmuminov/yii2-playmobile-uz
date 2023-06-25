@@ -13,74 +13,48 @@ class Messages extends BaseType implements TypeInterface
 {
 
     /**
-     * @var string
      * Адрес получателя (как правило MSISDN), указывается строго в формате 9989xxxxxxx, без пробелов и без знака +
      */
-    public string $recipient;
+    public ?string $recipient = null;
 
     /**
-     * @var string
      * @max-length 20
      */
-    public string $messageId;
+    public ?string $messageId = null;
+
+    public ?string $templateId = null;
 
     /**
-     * @var string
-     */
-    public string $templateId;
-
-    /**
-     * @var string
      * low      - низкий
      * normal   - обычный
      * high     - высокий
      * realtime - наивысший
      */
-    public string $priority = 'normal';
+    public ?string $priority = null;
 
-    /**
-     * @var string
-     */
-    public string $variables;
+    public ?string $variables = null;
 
-    /**
-     * @var Timing
-     */
-    public Timing $timing;
+    public ?Timing $timing = null;
 
-    /**
-     * @var Sms
-     */
-    public Sms $sms;
+    public ?Sms $sms = null;
 
-    /**
-     * @var Call
-     */
-    public Call $call;
+    public ?Call $call = null;
 
-    /**
-     * @return self
-     */
     public function serialize(): self
     {
-        $this->serialized = json_encode([
-            'recipient' => $this->recipient,
-            'message-id' => $this->messageId,
-            'template-id' => $this->templateId,
-            'priority' => $this->priority,
-            'variables' => $this->variables,
-            'timing' => $this->timing,
-            'sms' => $this->sms,
-            'call' => $this->call,
-        ]);
+        $this->serialized = [];
+        if ($this->recipient) $this->serialized['recipient'] = $this->recipient;
+        if ($this->messageId) $this->serialized['message-id'] = $this->messageId;
+        if ($this->templateId) $this->serialized['template-id'] = $this->templateId;
+        if ($this->priority) $this->serialized['priority'] = $this->priority;
+        if ($this->variables) $this->serialized['variables'] = $this->variables;
+        if ($this->timing) $this->serialized['timing'] = $this->timing->serialize()->serialized;
+        if ($this->sms) $this->serialized['sms'] = $this->sms->serialize()->serialized;
+        if ($this->call) $this->serialized['call'] = $this->call->serialize()->serialized;
         return $this;
     }
 
-    /**
-     * @param $data
-     * @return self
-     */
-    public function unSerialize($data): self
+    public function unSerialize(mixed $data): self
     {
         if (isset($data['recipient'])) {
             $this->recipient = $data['recipient'];

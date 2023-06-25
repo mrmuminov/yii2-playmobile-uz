@@ -12,28 +12,16 @@ namespace mrmuminov\yii2playmobileuz\types;
 class SmsContent extends BaseType implements TypeInterface
 {
 
-    /**
-     * @var string
-     */
-    public string $text;
+    public ?string $text = null;
 
-
-    /**
-     * @return self
-     */
     public function serialize(): self
     {
-        $this->serialized = json_encode([
-            'text' => $this->text,
-        ]);
+        $this->serialized = [];
+        if ($this->text) $this->serialized['text'] = $this->text;
         return $this;
     }
 
-    /**
-     * @param $data
-     * @return self
-     */
-    public function unSerialize($data): self
+    public function unSerialize(mixed $data): self
     {
         if (isset($data['text'])) {
             $this->text = $data['text'];

@@ -1,26 +1,43 @@
 {
-    "name": "mrmuminov/yii2-playmobile-uz",
-    "description": "Yii2 PlaymobileUz SMS-shlyuz ",
-    "type": "yii2-extension",
-    "keywords": ["yii2","extension","sms","shlyuz","send","play","mobile","uz","playmobile","playmobileuz","mrmuminov"],
-    "license": "Apache-2.0",
-    "authors": [
-        {
-            "name": "Bahriddin Mo'minov",
-            "email": "darkshadeuz@gmail.com"
-        }
-    ],
-    "require": {
-        "yiisoft/yii2": "~2.0.0",
-        "yiisoft/yii2-httpclient": "~2.0.0",
-        "php": "7.*",
-        "ext-curl": "*",
-      "ext-json": "*"
-    },
-    "minimum-stability": "dev",
-    "autoload": {
-        "psr-4": {
-            "mrmuminov\\yii2playmobileuz\\": "src/"
-        }
+  "name": "mrmuminov/yii2-playmobile-uz",
+  "description": "Yii2 PlaymobileUz SMS-shlyuz ",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii2",
+    "extension",
+    "sms",
+    "shlyuz",
+    "send",
+    "play",
+    "mobile",
+    "uz",
+    "playmobile",
+    "playmobileuz",
+    "mrmuminov"
+  ],
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "Bahriddin Mo'minov",
+      "email": "darkshadeuz@gmail.com"
     }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": "^8.2",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "yiisoft/yii2": "^2.0.0",
+    "guzzlehttp/guzzle": "7.7.x-dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "mrmuminov\\yii2playmobileuz\\": "src/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true
+    }
+  }
 }

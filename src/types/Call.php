@@ -13,31 +13,30 @@ class Call extends BaseType implements TypeInterface
 {
 
     /**
-     * @var string
+     * Адрес отправителя
      */
-    public string $originator;
-
+    public ?string $originator;
     /**
-     * @var int
+     * Время жизни сообщения в секундах. По
+     * истечении данного времени сообщению
+     * присваивается статус expired и производится
+     * отправка сообщения по альтернативному
+     * каналу, если он задана
      */
-    public int $ttl;
-
+    public ?int $ttl;
     /**
-     * @var CallContent
+     * Параметры для отправки по каналу
      */
-    public CallContent $content;
-
+    public ?CallContent $content;
     /**
-     * @var int
      * Количество попыток повторного звонка. Допустимы только неотрицательные числа.
      */
-    public int $retryAttempts;
+    public ?int $retryAttempts;
 
     /**
-     * @var int
      * Интервал, через который будет произведен повторный звонок, в миллисекундах
      */
-    public int $retryTimeout;
+    public ?int $retryTimeout;
 
 
     /**
@@ -45,21 +44,20 @@ class Call extends BaseType implements TypeInterface
      */
     public function serialize(): self
     {
-        $this->serialized = json_encode([
-            'originator' => $this->originator,
-            'ttl' => $this->ttl,
-            'content' => $this->content,
-            'retry-attempts' => $this->retryAttempts,
-            'retry-timeout' => $this->retryTimeout,
-        ]);
+        $this->serialized = [];
+        if ($this->originator) $this->serialized['originator'] = $this->originator;
+        if ($this->ttl) $this->serialized['ttl'] = $this->ttl;
+        if ($this->content) $this->serialized['content'] = $this->content->serialize()->serialized;
+        if ($this->retryAttempts) $this->serialized['retry-attempts'] = $this->retryAttempts;
+        if ($this->retryTimeout) $this->serialized['retry-timeout'] = $this->retryTimeout;
         return $this;
     }
 
     /**
-     * @param $data
+     * @param mixed $data
      * @return self
      */
-    public function unSerialize($data): self
+    public function unSerialize(mixed $data): self
     {
         if (isset($data['originator'])) {
             $this->originator = $data['originator'];

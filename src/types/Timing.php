@@ -13,73 +13,59 @@ class Timing extends BaseType implements TypeInterface
 {
 
     /**
-     * @var string
      * Отправлять по местному времени
      *  0 - получателя
      *  1 - системы
      */
-    public string $localtime;
+    public ?string $localtime = null;
 
     /**
-     * @var string
      * Дата начала отправки.
      * Формат YYYY-MM-DD hh:mm.
      * Если не указана, то сообщения отправляются сразу же.
      */
-    public string $startDatetime;
+    public ?string $startDatetime = null;
 
     /**
-     * @var string
      * Дата завершения отправки.
-     * Формат YYYY-MMDD hh:mm.
+     * Формат YYYY-MM-DD hh:mm.
      * Если не указана, то система не стремится отправиться все сообщения до определенного времени.
      */
-    public string $endDatetime;
+    public ?string $endDatetime = null;
 
     /**
-     * @var string
      * Время, с которого разрешена отправка.
      * Формат hh:mm
      */
-    public string $allowedStarttime;
+    public ?string $allowedStarttime = null;
 
     /**
-     * @var string
      * Время, до которого разрешена отправка.
      * Формат hh:mm
      */
-    public string $allowedEndtime;
+    public ?string $allowedEndtime = null;
 
     /**
-     * @var int
      * Равномерно распределять отправку
      *  1 - распределять
      *  0 - не распределять
      */
-    public int $sendEvenly;
+    public ?int $sendEvenly = null;
 
-
-    /**
-     * @return self
-     */
     public function serialize(): self
     {
-        $this->serialized = json_encode([
-            'localtime' => $this->localtime,
-            'start-datetime' => $this->startDatetime,
-            'end-datetime' => $this->endDatetime,
-            'allowed-starttime' => $this->allowedStarttime,
-            'allowed-endtime' => $this->allowedEndtime,
-            'send-evenly' => $this->sendEvenly,
-        ]);
+        $this->serialized = [];
+        if ($this->localtime) $this->serialized['localtime'] = $this->localtime;
+        if ($this->startDatetime) $this->serialized['start-datetime'] = $this->startDatetime;
+        if ($this->endDatetime) $this->serialized['end-datetime'] = $this->endDatetime;
+        if ($this->allowedStarttime) $this->serialized['allowed-starttime'] = $this->allowedStarttime;
+        if ($this->allowedEndtime) $this->serialized['allowed-endtime'] = $this->allowedEndtime;
+        if ($this->sendEvenly) $this->serialized['send-evenly'] = $this->sendEvenly;
+
         return $this;
     }
 
-    /**
-     * @param $data
-     * @return self
-     */
-    public function unSerialize($data): self
+    public function unSerialize(mixed $data): self
     {
         if (isset($data['localtime'])) {
             $this->localtime = $data['localtime'];

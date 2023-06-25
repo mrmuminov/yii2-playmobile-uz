@@ -11,41 +11,21 @@ namespace mrmuminov\yii2playmobileuz\types;
  */
 class Sms extends BaseType implements TypeInterface
 {
-
-    /**
-     * @var string
-     */
-    public string $originator;
-
-    /**
-     * @var int
-     */
-    public int $ttl;
-
-    /**
-     * @var SmsContent
-     */
-    public SmsContent $content;
+    public ?string $originator = null;
+    public ?int $ttl = null;
+    public ?SmsContent $content = null;
 
 
-    /**
-     * @return self
-     */
     public function serialize(): self
     {
-        $this->serialized = json_encode([
-            'originator' => $this->originator,
-            'ttl' => $this->ttl,
-            'content' => $this->content,
-        ]);
+        $this->serialized = [];
+        if ($this->originator) $this->serialized['originator'] = $this->originator;
+        if ($this->ttl) $this->serialized['ttl'] = $this->ttl;
+        if ($this->content) $this->serialized['content'] = $this->content->serialize()->serialized;
         return $this;
     }
 
-    /**
-     * @param $data
-     * @return self
-     */
-    public function unSerialize($data): self
+    public function unSerialize(mixed $data): self
     {
         if (isset($data['originator'])) {
             $this->originator = $data['originator'];

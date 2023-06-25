@@ -6,15 +6,8 @@ namespace mrmuminov\yii2playmobileuz\types;
 interface TypeInterface
 {
 
-    /**
-     * @return mixed
-     */
-    public function serialize();
+    public function serialize(): self;
 
-    /**
-     * @param mixed $data
-     * @return self
-     */
-    public function unSerialize($data): self;
+    public function unSerialize(mixed $data): self;
 
 }

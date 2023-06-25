@@ -185,7 +185,7 @@ final class ErrorException extends Exception
     /**
      * @param int $code
      */
-    public function setCode(int $code)
+    public function setCode(int $code): void
     {
         $this->code = $code;
     }
@@ -193,7 +193,7 @@ final class ErrorException extends Exception
     /**
      * @param string $message
      */
-    public function setMessage(string $message)
+    public function setMessage(string $message): void
     {
         $this->message = $message;
     }

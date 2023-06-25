@@ -12,62 +12,47 @@ namespace mrmuminov\yii2playmobileuz\types;
 class Send extends BaseType implements TypeInterface
 {
 
-    /**
-     * @var string
-     */
-    public string $templateId;
+    public ?string $templateId = null;
 
     /**
-     * @var string
      * low      - низкий
      * normal   - обычный
      * high     - высокий
      * realtime - наивысший
      */
-    public string $priority = 'normal';
+    public ?string $priority = null;
 
-    /**
-     * @var Sms
-     */
-    public Sms $sms;
+    public ?Timing $timing = null;
+    public ?Sms $sms = null;
 
-    /**
-     * @var Call
-     */
-    public Call $call;
+    public ?Call $call = null;
 
-    /**
-     * @var array{Messages}
-     * @required
-     */
-    public array $messages;
+    public array $messages = [];
 
-    /**
-     * @return self
-     */
     public function serialize(): self
     {
-        $this->serialized = json_encode([
-            'template-id' => $this->templateId,
-            'priority' => $this->priority,
-            'sms' => $this->sms,
-            'call' => $this->call,
-            'messages' => $this->messages,
-        ]);
+        $this->serialized = [];
+        if ($this->templateId) $this->serialized['template-id'] = $this->templateId;
+        if ($this->priority) $this->serialized['priority'] = $this->priority;
+        if ($this->timing) $this->serialized['timing'] = $this->timing?->serialize()->serialized;
+        if ($this->sms) $this->serialized['sms'] = $this->sms?->serialize()->serialized;
+        if ($this->call) $this->serialized['call'] = $this->call?->serialize()->serialized;
+        if (!empty($this->messages)) $this->serialized['messages'] = array_map(static function ($item) {
+            return $item->serialize()->serialized;
+        }, $this->messages);
         return $this;
     }
 
-    /**
-     * @param $data
-     * @return self
-     */
-    public function unSerialize($data): self
+    public function unSerialize(mixed $data): self
     {
         if (isset($data['template-id'])) {
             $this->templateId = $data['template-id'];
         }
         if (isset($data['priority'])) {
             $this->priority = $data['priority'];
+        }
+        if (isset($data['timing'])) {
+            $this->timing = $data['timing'];
         }
         if (isset($data['sms'])) {
             $this->sms = $data['sms'];

@@ -19,16 +19,5 @@ use mrmuminov\yii2playmobileuz\types\Send;
  */
 class SendRequest extends BaseRequest
 {
-
-    public string $payload = '/send';
-
-    /**
-     * @param Send $content
-     * @return SendRequest
-     */
-    public function setContent($content): SendRequest
-    {
-        return parent::setContent($content);
-    }
-
+    public string $payload = '/broker-api/send';
 }

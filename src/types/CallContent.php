@@ -12,40 +12,22 @@ namespace mrmuminov\yii2playmobileuz\types;
 class CallContent extends BaseType implements TypeInterface
 {
 
-    /**
-     * @var string
-     */
-    public string $text;
+    public ?string $text = null;
 
-    /**
-     * @var string
-     */
-    public string $menu;
+    public ?string $menu = null;
 
-    /**
-     * @var string
-     */
-    public string $file;
+    public ?string $file = null;
 
-
-    /**
-     * @return self
-     */
     public function serialize(): self
     {
-        $this->serialized = json_encode([
-            'text' => $this->text,
-            'menu' => $this->menu,
-            'file' => $this->file,
-        ]);
+        $this->serialized = [];
+        if ($this->text) $this->serialized['text'] = $this->text;
+        if ($this->menu) $this->serialized['menu'] = $this->menu;
+        if ($this->file) $this->serialized['file'] = $this->file;
         return $this;
     }
 
-    /**
-     * @param $data
-     * @return self
-     */
-    public function unSerialize($data): self
+    public function unSerialize(mixed $data): self
     {
         if (isset($data['text'])) {
             $this->text = $data['text'];
