@@ -6,11 +6,15 @@ use mrmuminov\yii2playmobileuz\types\Send;
 
 /**
  * Class SendRequest
- *
- * $brokerSend = new SendRequest();
- * $brokerSend->setContent(new Send(...));
- * $response = $brokerSend->send();
- *
+ * ```php
+ * $broker = new SendRequest([
+ *   'baseUrl' => $this->baseUrl,
+ *   'username' => $this->username,
+ *   'password' => $this->password,
+ * ]);
+ * $broker->setContent($data->serialize()->serialized);
+ * $broker->send();
+ * ```
  * @package mrmuminov\yii2playmobileuz\requests
  * @author MrMuminov <
  * @since 2.0.0

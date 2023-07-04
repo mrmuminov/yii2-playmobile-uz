@@ -169,12 +169,6 @@ final class ErrorException extends Exception
      */
     const E_411 = 411;
 
-    /**
-     * Construct the exception. Note: The message is NOT binary safe.
-     * @link https://php.net/manual/en/exception.construct.php
-     * @param int $code [optional] The Exception code.
-     * @param null|Throwable $previous [optional] The previous throwable used for the exception chaining.
-     */
     public function __construct($code, $previous = null)
     {
         $this->setCode($code);
@@ -182,25 +176,16 @@ final class ErrorException extends Exception
         parent::__construct($this->getMessage(), $this->getCode(), $previous);
     }
 
-    /**
-     * @param int $code
-     */
     public function setCode(int $code): void
     {
         $this->code = $code;
     }
 
-    /**
-     * @param string $message
-     */
     public function setMessage(string $message): void
     {
         $this->message = $message;
     }
 
-    /**
-     * @return string
-     */
     protected function getErrorMessage(): string
     {
         $errorList = [

@@ -40,17 +40,11 @@ class BaseRequest extends Component
         $this->request = $request;
     }
 
-    /**
-     * @return string
-     */
     public function getContentType(): string
     {
         return $this->contentType;
     }
 
-    /**
-     * @param string $contentType
-     */
     public function setContentType(string $contentType): void
     {
         $this->contentType = $contentType;
@@ -98,9 +92,6 @@ class BaseRequest extends Component
             );
             return $response->getBody()->getContents();
         } catch (GuzzleException $e) {
-            echo "<pre>";
-            print_r($e);
-            die;
             $exception = new ErrorException($e->getCode());
             if (!$exception->getMessage()) {
                 $exception->setMessage($e->getMessage());
